@@ -1,0 +1,19 @@
+{
+  "name": "js_csv_merge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deafjwhong/javascript_csvMerge.git"
+  },
+  "author": "Hallan Hong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deafjwhong/javascript_csvMerge/issues"
+  },
+  "homepage": "https://github.com/deafjwhong/javascript_csvMerge#readme"
+}
