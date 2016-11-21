@@ -10,7 +10,29 @@ var data = [
 function download_csv() {
 var dataset = [];
 d3.csv("stockCodeList.csv", function(data) {
-	dataset = data.map(function(d) { return [d["code"], d["name"]];});
+	dataset = data.map(function(csvItem) {
+        var stockInfo = dataset.find( function(stockItem) {
+            return stockItem.code == csvItem['code'];
+        });
+
+        if( !stockInfo ){
+            stockInfo = {
+                'code' : csvItem['code']
+            }
+        }
+
+        Object.getOwnPropertyNames(csvItem).forEach(function(key){
+            if( stockInfo.hasOwnProperty(key) ){
+                //프로퍼티가 존재하면.. 덮어씌운다..
+
+            }else{
+                stockInfo[key] = csvItem[key];
+            }
+        });
+
+        console.log(stockInfo);
+        return stockInfo;
+    });
 });
 
 console.log(dataset);
