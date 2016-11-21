@@ -6,9 +6,60 @@ var data = [
    ['Moo', 'Reindeer Hunter']
 ];
  
+ function readCSV(fileNames){
+     var queue = [];
+
+    fileNames.forEach( function ( fileName ) {
+        var readCSV = new Promise( function(resolve, reject) {
+            d3.csv(fileName+'.csv', function(data){
+                resolve(data);
+            })
+        });
+        
+        queue.push(readCSV);
+    });
+
+    return Promise.all(queue);
+
+ }
  
 function download_csv() {
 var dataset = [];
+
+//file들을 멀티 선택할 수 있게 추가.
+
+var fileNames = ['stockCodeList'];
+
+var getData = readCSV(fileNames);
+getData.then(function( csvFileAll ){
+    // 1. da
+    csvFileAll.forEach(function( csvFile ){
+        csvFile.forEach(function( data ){
+            var stockInfo = dataset.find( function(stockItem) {
+                return stockItem.code == data['code'];
+            });
+
+            if( !stockInfo ){
+                stockInfo = {
+                    'code' : data['code']
+                }
+            }
+
+            Object.getOwnPropertyNames(data).forEach(function(key){
+                if( stockInfo.hasOwnProperty(key) ){
+                    //프로퍼티가 존재하면.. 덮어씌운다..
+
+                }else{
+                    stockInfo[key] = data[key];
+                }
+            });
+
+            dataset.push(stockInfo); 
+        });
+    });
+    console.log(dataset);
+});
+
 d3.csv("stockCodeList.csv", function(data) {
 	dataset = data.map(function(csvItem) {
         var stockInfo = dataset.find( function(stockItem) {
