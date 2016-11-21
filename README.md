@@ -1,5 +1,13 @@
 # javascript_csvMerge
 
+실행방법
+
+MAC
+
+- Python 2.7 : python -m SimpleHTTPServer
+- Python 3.x : python -m http.server
+
+
 목적 
 
 개인 목적으로서, csv 파일을 합치는 것에 있다.
