@@ -90,7 +90,7 @@ getData.then(function( csvFileAll ){
             }else{
                 Object.getOwnPropertyNames(data).forEach(function(key){
                     if( stockInfo.hasOwnProperty(key) ){
-                        if( key !== 'code'){
+                        if( key !== 'code' || key !== 'name'){
                             stockInfo[key] += data[key];    
                         }
                     }else{
